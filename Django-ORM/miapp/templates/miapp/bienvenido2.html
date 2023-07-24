@@ -1,0 +1,81 @@
+{% extends 'miapp/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'miapp/estilos.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .article {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .article h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .article p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .article .author {
+            color: #999;
+        }
+
+        .article .date {
+            color: #999;
+        }
+    </style>
+    <title>Listado de Turnos (DTL)</title>
+</head>
+<body>
+     <p>Join de Cursos: {{cursos|join:', '}}</p>
+     <p>El primer curso es: {{cursos.0}} </p>
+     <p>La Cantidad de cursos son: {{cursos|length}} </p>
+     <p>primer curso en mayusculas {{cursos.0|upper}}</p>
+     <p>primer curso en minusculas {{cursos.0|lower}}</p>
+    <img src="{% static 'miapp/Django-logo.png' %}" alt="Django" width="50px" height="50px">
+   1
+    <table class="tabla-cursos">
+        <thead>
+            <tr>
+                <th style="width: 100px;">ID</th>
+                <th style="width: 100px;">NOMBRE</th>
+                <th style="width: 100px;">INSCRIPTOS</th>
+            </tr>
+            <tr>
+                
+                <th style="width: 70px;"> </th>
+                <th style="width: 70px;"> SERVICIO </th>
+            </tr>
+            
+        </thead>
+        <tbody>
+        {% for id, nombre, telefono, servicio in ejemplo %}
+            <tr>
+                <td>{{ id }}</td>
+                <td>{{ nombre }}</td>
+                <td>{{ telefono }}</td>
+                <td>{{ servicio }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
+{% endblock content %}
+

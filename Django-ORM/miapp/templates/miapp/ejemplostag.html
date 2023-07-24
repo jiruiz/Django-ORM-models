@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo de Tags de Django</title>
+</head>
+<body>
+
+<!-- Tag autoescape -->
+{% autoescape %}
+    <p>Este texto será escapado automáticamente para evitar problemas de seguridad.</p>
+{% endautoescape %}
+
+<hr>
+
+<!-- Tag block -->
+{% block contenido %}
+    <h1>Este es el contenido del bloque "contenido".</h1>
+{% endblock %}
+
+<hr>
+
+<!-- Tag comment -->
+{% comment %}
+    <p>Este es un comentario que no se mostrará en la salida del template.</p>
+{% endcomment %}
+
+<hr>
+
+<!-- Tag csrf_token -->
+<form>
+    {% csrf_token %}
+    <input type="text" name="nombre" placeholder="Ingrese su nombre">
+    <input type="submit" value="Enviar">
+</form>
+
+<hr>
+
+<!-- Tag cycle -->
+{% for i in "123456" %}
+    {% cycle 'rojo' 'verde' as color %}
+    <span style="color: {{ color }};">{{ i }}</span>
+{% endfor %}
+
+<hr>
+
+<!-- Tag debug -->
+{% debug %}
+
+<hr>
+
+<!-- Tag extends -->
+{% extends "base.html" %}
+
+<hr>
+
+<!-- Tag filter -->
+<p>{{ "Hola Mundo"|upper }}</p>
+
+<hr>
+
+<!-- Tag firstof -->
+{% firstof variable1 variable2 variable3 %}
+    <!-- Si ninguna de las variables está definida, este texto se mostrará. -->
+{% endfirstof %}
+
+<hr>
+
+<!-- Tag for -->
+{% for numero in numeros %}
+    <p>{{ numero }}</p>
+{% endfor %}
+
+<hr>
+
+<!-- Tag if -->
+{% if usuario %}
+    <p>Bienvenido, {{ usuario }}!</p>
+{% else %}
+    <p>No has iniciado sesión.</p>
+{% endif %}
+
+<hr>
+
+<!-- Tag ifchanged -->
+{% for producto in productos %}
+    {% ifchanged producto.categoria %}
+        <h3>{{ producto.categoria }}</h3>
+    {% endifchanged %}
+    <p>{{ producto.nombre }}</p>
+{% endfor %}
+
+<hr>
+
+<!-- Tag include -->
+{% include "header.html" %}
+
+<hr>
+
+<!-- Tag load -->
+{% load custom_tags %}
+
+<hr>
+
+<!-- Tag lorem -->
+{% lorem 3 p %}
+
+<hr>
+
+<!-- Tag now -->
+<p>La fecha y hora actual es: {% now "j/m/Y H:i" %}</p>
+
+<hr>
+
+<!-- Tag regroup -->
+{% regroup productos by categoria as productos_por_categoria %}
+{% for categoria in productos_por_categoria %}
+    <h2>{{ categoria.grouper }}</h2>
+    {% for producto in categoria.list %}
+        <p>{{ producto.nombre }}</p>
+    {% endfor %}
+{% endfor %}
+
+<hr>
+
+<!-- Tag resetcycle -->
+{% cycle 'rojo' 'verde' 'azul' %}
+{% resetcycle %}
+{% cycle 'rojo' 'verde' 'azul' %}
+
+<hr>
+
+<!-- Tag spaceless -->
+{% spaceless %}
+    <p>    Texto con     muchos     espacios    en blanco.   </p>
+{% endspaceless %}
+
+<hr>
+
+<!-- Tag templatetag -->
+{% templatetag openblock %} load custom_tags {% templatetag closeblock %}
+
+<hr>
+
+<!-- Tag url -->
+<a href="{% url 'detalle_producto' producto_id %}">Detalles del Producto</a>
+
+<hr>
+
+<!-- Tag verbatim -->
+{% verbatim %}
+    <p>Este contenido no será procesado por el motor de plantillas.</p>
+    <p>Se mostrará tal cual está escrito, sin reemplazar variables ni etiquetas.</p>
+{% endverbatim %}
+
+<hr>
+
+<!-- Tag widthratio -->
+{% widthratio 75 valor_actual valor_maximo %}
+
+<hr>
+
+<!-- Tag with -->
+{% with total=precio*cantidad %}
+    <p>El total a pagar es: {{ total }}</p>
+{% endwith %}
+
+</body>
+</html>
